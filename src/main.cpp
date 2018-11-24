@@ -9,37 +9,37 @@
 #include <iostream>
 #include <fstream>
 
+bool isPrime(std::vector<unsigned int>& p, unsigned int n)
+{
+	for(unsigned int i = 0; i < p.size(); i++) //check if n can be divided remainder-free with any smaller prime
+	{
+		if(n % p.at(i) == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 int main()
 {
 	unsigned int n = 1; //index var
 	std::vector<unsigned int> primes = {2}; //array that will hold all the prime numbers
-	bool isPrime = true; //prime indicator bool
 
 	std::ofstream file;
 	file.open("primes.txt"); //save all primes to this file
 
 	while(true)
 	{
-		n++;
+		n++; //increment candidate number
 
-		for(unsigned int i = 0; i < primes.size(); i++) //check if n can be divided remainder-free with any smaller prime
+		if(isPrime(primes, n)) //if number n is found to be a prime do this
 		{
-			if(n % primes.at(i) == 0)
-			{
-				isPrime = false;
-				break;
-			}
-		}
-
-		if(isPrime) //if number n is found to be a prime do this
-		{
-			primes.push_back(n);
-			file << n << ",";
+			primes.push_back(n); //add number n to prime number vector
+			file << n << ","; //write number n to file
 			//std::cout << n << "\n";
-			std::cout << "Primes found: " << primes.size() << "\n";
+			std::cout << "Primes found: " << primes.size() << "\n"; //print out the number of found primes
 		}
-
-		isPrime = true;
 	}
 	file.close();
 	return 0;
