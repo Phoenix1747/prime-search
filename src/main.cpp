@@ -1,6 +1,7 @@
 /*
  * Very simple algorithm to search for prime numbers by
- * dividing a candidate by all smaller prime numbers.
+ * dividing a candidate by all primes smaller than
+ * the square root of the candidate itself.
  *
  * Written by Phoenix1747, 2018-11-24.
  */
@@ -8,12 +9,21 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 bool isPrime(std::vector<unsigned int>& p, unsigned int n)
 {
+	float root = std::sqrt(n); //check factors up to the size of the sqrt of the number
+
 	for(unsigned int i = 0; i < p.size(); i++) //check if n can be divided remainder-free with any smaller prime
 	{
-		if(n % p.at(i) == 0)
+		unsigned int j = p.at(i); //lookup testing prime factor once
+
+		if(j > root)
+		{
+			break;
+		}
+		if(n % j == 0)
 		{
 			return false;
 		}
@@ -24,14 +34,15 @@ bool isPrime(std::vector<unsigned int>& p, unsigned int n)
 int main()
 {
 	unsigned int n = 1; //index var
+	unsigned int upperLimit = 1000000; //check all numbers smaller than this
 	std::vector<unsigned int> primes = {2}; //array that will hold all the prime numbers
 
 	std::ofstream file;
 	file.open("primes.txt"); //save all primes to this file
 
-	while(true)
+	while(n < upperLimit)
 	{
-		n++; //increment candidate number
+		n += 2; //increment candidate number by 2 to only check odd numbers
 
 		if(isPrime(primes, n)) //if number n is found to be a prime do this
 		{
