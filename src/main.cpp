@@ -3,7 +3,7 @@
  * dividing a candidate by all primes smaller than
  * the square root of the candidate itself.
  *
- * Written by Phoenix1747, 2018-11-24.
+ * Written by Phoenix1747, 2018-11-25.
  */
 
 #include <vector>
@@ -34,11 +34,11 @@ bool isPrime(std::vector<unsigned int>& p, unsigned int n)
 int main()
 {
 	unsigned int n = 1; //index var
-	unsigned int upperLimit = 1000000; //check all numbers smaller than this
+	unsigned int upperLimit = 1000000000; //check all numbers smaller than this
 	std::vector<unsigned int> primes = {2}; //array that will hold all the prime numbers
 
 	std::ofstream file;
-	file.open("primes.txt"); //save all primes to this file
+	file.open("primes.csv"); //save all primes to this file
 
 	while(n < upperLimit)
 	{
