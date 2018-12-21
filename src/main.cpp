@@ -11,13 +11,13 @@
 #include <fstream>
 #include <cmath>
 
-bool isPrime(std::vector<unsigned int>& p, unsigned int n)
+bool isPrime(std::vector<unsigned long int>& p, unsigned long int n)
 {
-	float root = std::sqrt(n); //check factors up to the size of the sqrt of the number
+	unsigned long root = std::sqrt(n); //check factors up to the size of the sqrt of the number
 
-	for(unsigned int i = 0; i < p.size(); i++) //check if n can be divided remainder-free with any smaller prime
+	for(unsigned long int i = 0; i < p.size(); i++) //check if n can be divided remainder-free with any smaller prime
 	{
-		unsigned int j = p.at(i); //lookup testing prime factor once
+		unsigned long int j = p.at(i); //lookup testing prime factor once
 
 		if(j > root)
 		{
@@ -33,9 +33,9 @@ bool isPrime(std::vector<unsigned int>& p, unsigned int n)
 
 int main()
 {
-	unsigned int n = 1; //index var
-	unsigned int upperLimit = 1000000000; //check all numbers smaller than this
-	std::vector<unsigned int> primes = {2}; //array that will hold all the prime numbers
+	unsigned long int n = 1; //index var
+	unsigned long int upperLimit = 1000000000; //check all numbers smaller than this
+	std::vector<unsigned long int> primes = {2}; //array that will hold all the prime numbers
 
 	std::ofstream file;
 	file.open("primes.csv"); //save all primes to this file
@@ -49,9 +49,11 @@ int main()
 			primes.push_back(n); //add number n to prime number vector
 			file << n << ","; //write number n to file
 			//std::cout << n << "\n";
-			std::cout << "Primes found: " << primes.size() << "\n"; //print out the number of found primes
+			std::cout << "[" << primes.size() << "] " << "Prime: " << n << "\n"; //print out the number of found primes
 		}
 	}
+
+	std::cout << "Search ended successfully. Found [" << primes.size() << "] prime numbers!" << std::endl;
 	file.close();
 	return 0;
 }
