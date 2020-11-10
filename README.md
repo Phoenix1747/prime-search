@@ -1,6 +1,14 @@
 # prime-search
+
+This repo currently consists of two different methods to search for primes; both can be found in the `src` folder.
+
+The upper limit for searching is selected by the user in both cases. 
+
+### sieve.cpp:
+
 Very simple algorithm to search for prime numbers by dividing a candidate by all primes smaller than the square root of the candidate itself.
 
-The number of found prime numbers will be printed to the output terminal and all numbers are saved into a file called `primes.csv` within the same directory.
+### simple.cpp:
 
-You can also set an upper limit for the prime number search in the code itself. Have a look at the `unsigned int upperLimit` variable in `int main()` and adjust it to your likings. Standard upper limit is 1,000,000,000.
+Classic sieve of Eratosthenes algorithm that essentially eliminates multiples of a prime number bigger than the candidate itself while stepping through every non-eliminated number.
+
